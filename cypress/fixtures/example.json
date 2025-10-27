@@ -1,0 +1,22 @@
+{
+  "item1": {
+    "id": "11111",
+    "name": "ArticleName1",
+    "value":"color1",
+    "price": 10.99
+  },
+
+  "item2": {
+    "id": "22222",
+    "name": "ArticleName2",
+    "value":"color2",
+    "price": 15.49
+  },
+
+  "person": {
+    "name": "John Doe",
+    "adress": "123 Main St, Anytown, USA",
+    "email": "test@test.com"
+  }
+
+}
