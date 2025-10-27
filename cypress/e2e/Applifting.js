@@ -22,9 +22,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
@@ -57,9 +56,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
@@ -72,9 +70,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber2
         searchItem.searchItem(items.item2.id)  
         
-        //assertion article name is as expected
+        //articleNumber2 exist on page
         cy.get(selectors.productId(items.item2.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item2.id)).click()
         
         //check item view
@@ -97,9 +94,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
@@ -137,9 +133,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //assertion articleNumber1 is as expected
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
@@ -152,9 +147,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber2
         searchItem.searchItem(items.item2.id)  
         
-        //assertion article name is as expected
+        //assertion articleNumber2 is as expected
         cy.get(selectors.productId(items.item2.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item2.id)).click()
         
         //check item view
@@ -184,9 +178,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //assertion articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
@@ -199,9 +192,8 @@ describe('Second part of my work', () => {
         //search for ArticleNumber1
         searchItem.searchItem(items.item1.id)  
         
-        //assertion article name is as expected
+        //assertion articleNumber exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
         //check item view
