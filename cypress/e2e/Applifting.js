@@ -129,7 +129,7 @@ describe('Second part of my work', () => {
          cy.get(selectors.cartItemName(items.item1.name)).should('have.length', 1)  //exist only one item in the cart     
         }) 
 
-    //TC14
+    //TC15
      it ('Update cart - remove Item', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
@@ -222,12 +222,6 @@ describe('Second part of my work', () => {
         cy.get(selectors.emptyCartMessage).should('have.text', 'Your cart is empty.')   
 
         })   
-        
-        
-
-
-
-
  })
 
 
