@@ -14,7 +14,7 @@ describe('Second part of my work', () => {
     cy.openHomePage()
 
   })
-
+    //TC1
     it('Happy path', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
@@ -40,7 +40,7 @@ describe('Second part of my work', () => {
         cy.url().should('include', '/cart')
 
         //check if the correct article is in the cart
-        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,1) 
+        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1') 
         
         //go to checkout
         checkout(items.person.name, items.person.address, items.person.email, 'Credit Card')
@@ -48,7 +48,8 @@ describe('Second part of my work', () => {
         //finished shopping
         finishShopping()
     }) 
-    
+
+    //TC9
     it ('Add to cart - two articles', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
@@ -84,11 +85,12 @@ describe('Second part of my work', () => {
         cy.get(selectors.cartCounter).should('have.text', '2')  
 
         //go to cart and verify items in the cart
-        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,1)
-        checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,1)     
+        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1')
+        checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,'1')     
         }) 
 
-        it ('Add to cart - one article twice', () => {
+    //TC10
+    it ('Add to cart - one article twice', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
@@ -123,10 +125,11 @@ describe('Second part of my work', () => {
         cy.get(selectors.cartCounter).should('have.text', '1')  
 
         //go to cart and verify items in the cart
-        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,2)     
+        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')
+         cy.get(selectors.cartItemName(items.item1.name)).should('have.length', 1)  //exist only one item in the cart     
         }) 
 
-
+    //TC14
      it ('Update cart - remove Item', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
@@ -162,9 +165,20 @@ describe('Second part of my work', () => {
         cy.get(selectors.cartCounter).should('have.text', '2')  
 
         //go to cart and verify items in the cart
-        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,1)
-        checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,1)     
-        }) 
+        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1')
+        checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,'1')     
+        
+        //remove item1 from the cart
+        cy.get(selectors.cartItemId(items.item1.id)).find(selectors.cartRemoveItemBtn).click()
+        //verify item1 is removed
+        cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')
+        //check summary price is updated        
+        cy.get(selectors.cartSumaryPrice).should('have.text', items.item2.price)   
+    }) 
+
+
+
+
 
         it ('Add to cart - one article twice', () => {
         //check text header of first page
@@ -201,8 +215,11 @@ describe('Second part of my work', () => {
         cy.get(selectors.cartCounter).should('have.text', '1')  
 
         //go to cart and verify items in the cart
-        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,2)     
-        })    
+        checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')  
+       
+        })   
+        
+        
 
 
 
