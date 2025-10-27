@@ -176,11 +176,8 @@ describe('Second part of my work', () => {
         cy.get(selectors.cartSumaryPrice).should('have.text', items.item2.price)   
     }) 
 
-
-
-
-
-        it ('Add to cart - one article twice', () => {
+    //TC14
+    it ('Update shopping cart - remove last item', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
@@ -217,6 +214,13 @@ describe('Second part of my work', () => {
         //go to cart and verify items in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')  
        
+        //remove item1 from the cart
+        cy.get(selectors.cartItemId(items.item1.id)).find(selectors.cartRemoveItemBtn).click()
+        //verify item1 is removed
+        cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')    
+        //check if the cart is empty
+        cy.get(selectors.emptyCartMessage).should('have.text', 'Your cart is empty.')   
+
         })   
         
         

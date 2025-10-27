@@ -14,6 +14,7 @@ export const selectors = {
   cartItemQuantity:(quantity) => `input[data-cart-item-quantity="${quantity}"]`,
   cartSumaryPrice: '[data-test="cart-summary-price"]',
   cartRemoveItemBtn: '[data-test="remove-item-btn"]',
+  emptyCartMessage: '[data-test="empty-cart-message"]',
   checkoutBtn: '[data-test="checkout-btn"]',
   checkoutName: '[data-test="checkout-name"]',
   checkoutAddress: '[data-test="checkout-address"]',
