@@ -1,4 +1,3 @@
-/// <reference types="cypress" />
 
 import { finishShopping } from "../page-objects/CheckoutPage"
 import { items } from "../fixtures/items.json"     
