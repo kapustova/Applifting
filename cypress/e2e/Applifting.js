@@ -6,7 +6,7 @@ import { selectors } from "../selectors/selectors"
 import { checkout } from "../page-objects/CheckoutPage"
 import { searchItem } from "../page-objects/SearchPage"
 import { itemView } from "../page-objects/ViewItemPage"
-
+import { checkCart } from "../page-objects/CartPage"
 
 describe('Second part of my work', () => {
   beforeEach('Open test aplication', () => {
