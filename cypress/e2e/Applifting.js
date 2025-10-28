@@ -14,27 +14,24 @@ describe('Second part of my work', () => {
   })
     //TC1
     it('Happy path', () => {
-        //check text header of first page
+        
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //ArticleNumber1 is searched
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item1.id)  
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
         
-        //check item view
+        //Item name and id is shown on View Item page 
         itemView.itemView(items.item1.name, items.item1.id)
-        
-        //Add to cart
+
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
-
-        //go to cart from add to cart button - not from icon cart
-        cy.get(selectors.cartViewFromAddCart).click()        
-        //check if the url contains /cart
+        cy.get(selectors.cartViewFromAddCart).click()    
+         
+        //Article name, id, value, price and quantity are correct in the cart
         cy.url().should('include', '/cart')
-
-        //check if the correct article is in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1') 
         
         //Checkout is processed successfully
@@ -44,164 +41,135 @@ describe('Second part of my work', () => {
 
     //TC9
     it ('Add to cart - two articles', () => {
-        //check text header of first page
+        
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //search for ArticleNumber1
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item1.id)  
-        
-        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
+
+         //Item name and id is shown on View Item page 
         itemView.itemView(items.item1.name, items.item1.id)
         
-        // The second article is added to the cart and displayed view item page
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
-        cy.get(selectors.cartCounter).should('have.text', '1')  
+        cy.get(selectors.cartCounter).should('have.text', '1') 
+
+        //ArticleNumber2 is searched on Search page 
         searchItem.searchItem(items.item2.id)         
         cy.get(selectors.productId(items.item2.id)).should('exist')
         cy.get(selectors.productId(items.item2.id)).click()
         
+        //Item name2 and id2 is shown on View Item page 
         itemView.itemView(items.item2.name, items.item2.id)
         
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '2')  
 
-        //two articles are in the cart
+        //Two articles (name,id,value,price and quantity) are in the cart page
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1')
         checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,'1')     
         }) 
 
     //TC10
     it ('Add to cart - one article twice', () => {
-        //check text header of first page
+        
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //search for ArticleNumber1
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item1.id)  
-        
-        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
         
-        //check item view
+        //Item name and id is shown on View Item page
         itemView.itemView(items.item1.name, items.item1.id)
         
-        //Add to cart
+        //Counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
 
-        //search for ArticleNumber1
+        //ArticleNumber1 is searched again on Search page
         searchItem.searchItem(items.item1.id)  
-        
-        //assertion article name is as expected
         cy.get(selectors.productId(items.item1.id)).should('exist')
-        //click on ArticleName1
         cy.get(selectors.productId(items.item1.id)).click()
         
-        //check item view
+         //Item name and id is shown on View Item page
         itemView.itemView(items.item1.name, items.item1.id)
         
-        //Add to cart
+        //Cart Counter is not changed after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
 
-        //go to cart and verify items in the cart
+        //Only one article with quantity two is on the cart page
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')
-         cy.get(selectors.cartItemName(items.item1.name)).should('have.length', 1)  //exist only one item in the cart     
-        }) 
+         cy.get(selectors.cartItemName(items.item1.name)).should('have.length', 1)
 
     //TC15
      it ('Update cart - remove Item', () => {
-        //check text header of first page
+        
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //search for ArticleNumber1
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item1.id)  
-        
-        //assertion articleNumber1 is as expected
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
         
-        //check item view
+        //Item name and id is shown on View Item page
         itemView.itemView(items.item1.name, items.item1.id)
         
-        //Add to cart
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
 
-        //search for ArticleNumber2
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item2.id)  
-        
-        //assertion articleNumber2 is as expected
         cy.get(selectors.productId(items.item2.id)).should('exist')
         cy.get(selectors.productId(items.item2.id)).click()
         
-        //check item view
+        //Item2 name and id is shown on View Item page
         itemView.itemView(items.item2.name, items.item2.id)
         
-        //Add to cart
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '2')  
 
-        //go to cart and verify items in the cart
+        //Two articles (name,id,value,price and quantity) are in the cart page
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1')
         checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,'1')     
         
-        //remove item1 from the cart
+        //The Item1 is not in cart after update cart and summary price is updated
         cy.get(selectors.cartItemId(items.item1.id)).find(selectors.cartRemoveItemBtn).click()
-        //verify item1 is removed
-        cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')
-        //check summary price is updated        
+        cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')       
         cy.get(selectors.cartSumaryPrice).should('have.text', items.item2.price)   
     }) 
 
     //TC14
     it ('Update shopping cart - remove last item', () => {
-        //check text header of first page
+        
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //search for ArticleNumber1
+        //ArticleNumber is searched on Search page
         searchItem.searchItem(items.item1.id)  
-        
-        //assertion articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
         
-        //check item view
+        //Item name and id is shown on View Item page
         itemView.itemView(items.item1.name, items.item1.id)
         
-        //Add to cart
+        //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
-
-        //search for ArticleNumber1
-        searchItem.searchItem(items.item1.id)  
         
-        //assertion articleNumber exist on page
-        cy.get(selectors.productId(items.item1.id)).should('exist')
-        cy.get(selectors.productId(items.item1.id)).click()
-        
-        //check item view
-        itemView.itemView(items.item1.name, items.item1.id)
-        
-        //Add to cart
-        cy.get(selectors.addToCartBtn).click()
-        cy.get(selectors.cartCounter).should('have.text', '1')  
-
-        //go to cart and verify items in the cart
+        //Article name, id, value, price and quantity are correct in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')  
        
-        //remove item1 from the cart
+        //The cart is empty after removing the last item
         cy.get(selectors.cartItemId(items.item1.id)).find(selectors.cartRemoveItemBtn).click()
-        //verify item1 is removed
         cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')    
-        //check if the cart is empty
         cy.get(selectors.emptyCartMessage).should('have.text', 'Your cart is empty.')   
 
         })   
- })
-
-
-
-  
+ }) 
+})
