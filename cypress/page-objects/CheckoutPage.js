@@ -1,52 +1,5 @@
 import{ selectors } from "../selectors/selectors"
 
-class SearchItem {
-    /**
-     * 
-     * @param {string} item - article name or article ID
-     */
-    searchItem(item) {
-        cy.get(selectors.searchItem).type(item)
-        cy.get(selectors.searchSubmitBtn).click()
-        cy.get(selectors.searchResultGrid).should('contains.text', item)
-    }
-}
-export const searchItem = new SearchItem();
-
-class ItemView {
-    /**
-     * 
-     * @param {string} id - item ID
-     * @param {string} item - item name
-    */
-    itemView(item, id) {
-        cy.url().should('include', id)
-        //check if the product title is correct
-        cy.get(selectors.productTitle).should('have.text', item)
-}
-}
-export const itemView = new ItemView();
-
-class CheckCart {
-    /**
-     * 
-     * @param {string} item - article name
-     * @param {string} id - item ID
-     * @param {string} value - item value
-     * @param {string} price - item price
-     */
-
-    checkCart(item, id,value,price,quantity){
-        //check if the correct article is in the cart
-        cy.get(selectors.cartItemId(id)).should('exist')
-        cy.get(selectors.cartItemName(item)).should('exist')
-        cy.get(selectors.cartItemValue(value)).should('exist')
-        cy.get(selectors.cartItemPrice(price)).should('exist')
-        cy.get(selectors.cartItemId(id).find(selectors.cartItemQuantity(quantity))).should('exist')
-    }
-}
-export const checkCart = new CheckCart();
-
 class Checkout {
  
     /**
@@ -69,7 +22,6 @@ class Checkout {
         //submit the order
         cy.get(selectors.submitOrderBtn).click()   
     }    
-
 }
 export const checkout = new Checkout();
 
@@ -86,4 +38,3 @@ class FinishShopping {
     }
 }
 export const finishShopping = new FinishShopping();
-

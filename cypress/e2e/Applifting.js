@@ -1,13 +1,12 @@
 /// <reference types="cypress" />
 
-import { finishShopping } from "../page-objects/finishShopping"
-import { items } from "../fixtures/items.json"
-import { checkCart, itemView, searchItem } from "../page-objects/GetMethods"     
+import { finishShopping } from "../page-objects/CheckoutPage"
+import { items } from "../fixtures/items.json"     
 import { selectors } from "../selectors/selectors"
-import { checkout } from "../page-objects/GetMethods"
-import { searchItem } from "../page-objects/GetMethods"
-import { checkCart } from "../page-objects/GetMethods"
-import { itemView } from "../page-objects/GetMethods"
+import { checkout } from "../page-objects/CheckoutPage"
+import { searchItem } from "../page-objects/SearchPage"
+import { itemView } from "../page-objects/ViewItemPage"
+
 
 describe('Second part of my work', () => {
   beforeEach('Open test aplication', () => {
@@ -19,10 +18,8 @@ describe('Second part of my work', () => {
         //check text header of first page
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //search for ArticleNumber1
+        //ArticleNumber1 is searched
         searchItem.searchItem(items.item1.id)  
-        
-        //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
         
@@ -41,10 +38,8 @@ describe('Second part of my work', () => {
         //check if the correct article is in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1') 
         
-        //go to checkout
+        //Checkout is processed successfully
         checkout(items.person.name, items.person.address, items.person.email, 'Credit Card')
-
-        //finished shopping
         finishShopping()
     }) 
 
@@ -59,29 +54,21 @@ describe('Second part of my work', () => {
         //articleNumber1 exist on page
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
-        
-        //check item view
         itemView.itemView(items.item1.name, items.item1.id)
         
-        //Add to cart
+        // The second article is added to the cart and displayed view item page
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
-
-        //search for ArticleNumber2
-        searchItem.searchItem(items.item2.id)  
-        
-        //articleNumber2 exist on page
+        searchItem.searchItem(items.item2.id)         
         cy.get(selectors.productId(items.item2.id)).should('exist')
         cy.get(selectors.productId(items.item2.id)).click()
         
-        //check item view
         itemView.itemView(items.item2.name, items.item2.id)
         
-        //Add to cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '2')  
 
-        //go to cart and verify items in the cart
+        //two articles are in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'1')
         checkCart.checkCart(items.item2.name, items.item2.id, items.item2.value, items.item2.price,'1')     
         }) 
