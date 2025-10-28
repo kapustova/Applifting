@@ -142,7 +142,7 @@ describe('Second part of my work', () => {
         //The Item1 is not in cart after update cart and summary price is updated
         cy.get(selectors.cartItemId(items.item1.id)).find(selectors.cartRemoveItemBtn).click()
         cy.get(selectors.cartItemId(items.item1.id)).should('not.exist')       
-        cy.get(selectors.cartSumaryPrice).should('have.text', items.item2.price)   
+        cy.get(selectors.cartTotalPrice).should('have.text', items.item2.price)   
     }) 
 
     //TC14
@@ -161,7 +161,7 @@ describe('Second part of my work', () => {
         //Cart counter is increases after adding item to the cart
         cy.get(selectors.addToCartBtn).click()
         cy.get(selectors.cartCounter).should('have.text', '1')  
-        
+
         //Article name, id, value, price and quantity are correct in the cart
         checkCart.checkCart(items.item1.name, items.item1.id, items.item1.value, items.item1.price,'2')  
        

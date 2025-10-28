@@ -12,7 +12,7 @@ export const selectors = {
   cartItemName: (name) => `[data-cart-item-name="${name}"]`,
   cartItemId: (id) => `[data-cart-item-id="${id}"]`,
   cartItemQuantity:(quantity) => `input[data-cart-item-quantity="${quantity}"]`,
-  cartSumaryPrice: '[data-test="cart-summary-price"]',
+  cartTotalPrice: '[data-test="cart-summary-price"]',
   cartRemoveItemBtn: '[data-test="remove-item-btn"]',
   emptyCartMessage: '[data-test="empty-cart-message"]',
   checkoutBtn: '[data-test="checkout-btn"]',
