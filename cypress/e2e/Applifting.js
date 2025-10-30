@@ -111,7 +111,8 @@ describe('Second part of my work', () => {
         
         cy.get(selectors.headerTitle).should('have.text', 'Welcome to my shop!')
        
-        //ArticleNumber is searched on Search page
+        //ArticleNumber is searched on Search page+
+        
         searchItem.searchItem(items.item1.id)  
         cy.get(selectors.productId(items.item1.id)).should('exist')
         cy.get(selectors.productId(items.item1.id)).click()
