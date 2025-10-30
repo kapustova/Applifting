@@ -28,18 +28,18 @@ Testy jsou vytvořeny v Cypress.
   - *Given* I am on the homepage
   - *Then* I should see "Welcome to my shop!" as the header title
 
-**Scenario Outline: TC1 - Complete purchase flow**
-  - *When* I search for item with id "<item_id>"
-  - *Then* the item with id "<item_id>" should be visible
-  - *When* I open the item details
-  - *Then* I should see item name "<item_name>" and id "<item_id>"
-  - *When* I add the item to cart
-  - *Then* cart counter should show "<item_quantity>"
-  - *When* I view the cart from add-to-cart
-  - *Then* I should be on the "/cart" page
-  - And the cart should contain item "<item_name>" with id "<item_id>", value "<item_value>", price "<item_price>" and quantity "<item_quantity>"
-  - *When* I complete checkout with payment "<payment_method>"
-  - *Then* I should see order confirmation
+ **Scenario Outline: TC1 - Complete purchase flow**
+   - *When* I search for item with id "<item_id>"
+   - *Then* the item with id "<item_id>" should be visible
+   - *When* I open the item details
+   - *Then* I should see item name "<item_name>" and id "<item_id>"
+   - *When* I add the item to cart
+   - *Then* cart counter should show "<item_quantity>"
+   - *When* I view the cart from add-to-cart
+   - *Then* I should be on the "/cart" page
+   - And the cart should contain item "<item_name>" with id "<item_id>", value "<item_value>", price "<item_price>" and quantity "<item_quantity>"
+   - *When* I complete checkout with payment "<payment_method>"
+   - *Then* I should see order confirmation
 
     Examples:
       | item_name     | item_id         | item_value     | item_price    | item_quantity  | payment_method  |
