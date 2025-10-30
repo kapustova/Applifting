@@ -1,4 +1,4 @@
-# Applifting - E2E testy (Cypress)
+# E2E testy for Applifting (Cypress)
 
 Testy jsou vytvořeny v Cypress.
 
